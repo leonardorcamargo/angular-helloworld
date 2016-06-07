@@ -1,0 +1,24 @@
+{
+  "name": "angular-helloworld",
+  "homepage": "https://github.com/leonardorcamargo/angular-helloworld",
+  "authors": [
+    "Leonardo Romano <leonardorcamargo@gmail.com>"
+  ],
+  "description": "\"Sample project for study in the AngularJS\"",
+  "main": "",
+  "keywords": [
+    "angularjs"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.6"
+  }
+}
