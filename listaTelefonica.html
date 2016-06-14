@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="UTF-8">
 <html ng-app="listaTelefonica">
   <head>
     <title>Lista Telefonica</title>
@@ -76,11 +77,15 @@
             </tr>
         </table>
         <hr/>
-        <input class="form-control" type="text" ng-model="contato.nome" placeholder="Digite o nome" />
-        <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Digite o telefone" />
-        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
-          <option value="">Selecione uma operadora</option>
-        </select>
+        É válido: {{contatoForm.$valid}}<br/>
+        É inválido: {{contatoForm.$invalid}}<br/>
+        <form name="contatoForm">
+            <input class="form-control" type="text" ng-model="contato.nome" placeholder="Digite o nome" ng-required="true" />
+            <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Digite o telefone" />
+            <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
+              <option value="">Selecione uma operadora</option>
+            </select>
+        </form>            
         <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar Contato</button>
         <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-show="isContatosSelecionados(contatos)">Apagar Contatos</button>
   	</div>    
