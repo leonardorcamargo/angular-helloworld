@@ -79,17 +79,23 @@
         </table>
         <hr/>
         <form name="contatoForm">
-            <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Digite o nome" ng-required="true" />
-            <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Digite o telefone" ng-required="true"/>
+            <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Digite o nome" ng-required="true" ng-minlength="10"/>
+            <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Digite o telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/" />
             <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras" ng-required="true">
               <option value="">Selecione uma operadora</option>
             </select>
         </form>
-        <div ng-show="contatoForm.nome.$invalid && contatoForm.nome.$dirty" class="alert alert-danger">
+        <div ng-show="contatoForm.nome.$error.required && contatoForm.nome.$dirty" class="alert alert-danger">
           Por favor preencha o nome
         </div>
-        <div ng-show="contatoForm.telefone.$invalid && contatoForm.telefone.$dirty" class="alert alert-danger">
+        <div ng-show="contatoForm.nome.$error.minlength" class="alert alert-danger">
+          O nome deve ter pelo menos 10 caracteres
+        </div>
+        <div ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty" class="alert alert-danger">
           Por favor preencha o telefone
+        </div>
+        <div ng-show="contatoForm.telefone.$error.pattern" class="alert alert-danger">
+          O campo telefone deve ser no formato 00000-0000
         </div>
         <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
         <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-show="isContatosSelecionados(contatos)">Apagar Contatos</button>
